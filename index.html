@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1220">
+  <title>AI Business Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🧠</div>
+      <div>
+        <strong>AI BUSINESS</strong>
+        <span>INTELLIGENCE</span>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-page="dashboard">
+        <span>📊</span> Dashboard
+      </button>
+
+      <button class="nav-item" data-page="sales">
+        <span>🛒</span> Penjualan
+      </button>
+
+      <button class="nav-item" data-page="products">
+        <span>📦</span> Produk
+      </button>
+
+      <button class="nav-item" data-page="expenses">
+        <span>💸</span> Pengeluaran
+      </button>
+
+      <button class="nav-item" data-page="customers">
+        <span>👥</span> Pelanggan
+      </button>
+
+      <button class="nav-item" data-page="intelligence">
+        <span>🧠</span> AI Intelligence
+      </button>
+
+      <button class="nav-item" data-page="analytics">
+        <span>📈</span> Analytics
+      </button>
+
+      <button class="nav-item" data-page="settings">
+        <span>⚙️</span> Pengaturan
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <div class="engine-status">
+        <span class="status-dot"></span>
+        <div>
+          <strong>AI BI Engine</strong>
+          <small>Analisis otomatis aktif</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+
+        <div>
+          <h1 id="pageTitle">Dashboard</h1>
+          <p id="pageSubtitle">Ringkasan kondisi bisnis</p>
+        </div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="date-display" id="currentDate"></div>
+        <button class="refresh-btn" id="refreshBtn" title="Refresh">
+          ↻
+        </button>
+      </div>
+    </header>
+
+    <div class="content">
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboardPage">
+
+        <div class="hero">
+          <div>
+            <span class="eyebrow">BUSINESS INTELLIGENCE</span>
+            <h2>Selamat datang di AI Business Intelligence</h2>
+            <p>
+              Data bisnis → Analisis → Insight → Opsi tindakan.
+              Semua analisis diproses otomatis dari data bisnis Anda.
+            </p>
+          </div>
+
+          <button class="primary-btn" data-page="intelligence">
+            🧠 Lihat AI Insight
+          </button>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <h3>Ringkasan Bisnis</h3>
+            <span>30 hari terakhir</span>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-icon revenue">💰</div>
+            <div>
+              <span>Omzet</span>
+              <strong id="dashRevenue">Rp0</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon profit">📈</div>
+            <div>
+              <span>Laba</span>
+              <strong id="dashProfit">Rp0</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon expense">💸</div>
+            <div>
+              <span>Pengeluaran</span>
+              <strong id="dashExpense">Rp0</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon margin">%</div>
+            <div>
+              <span>Margin</span>
+              <strong id="dashMargin">0%</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon transaction">🛒</div>
+            <div>
+              <span>Transaksi</span>
+              <strong id="dashTransactions">0</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon customer">👥</div>
+            <div>
+              <span>Pelanggan Aktif</span>
+              <strong id="dashCustomers">0</strong>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Tren Penjualan</h3>
+                <span>30 hari terakhir</span>
+              </div>
+            </div>
+            <div class="mini-chart" id="dashboardChart"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>AI Business Insight</h3>
+                <span>Ringkasan otomatis</span>
+              </div>
+              <button class="text-btn" data-page="intelligence">
+                Lihat semua
+              </button>
+            </div>
+            <div id="dashboardInsights" class="compact-insights"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- PENJUALAN -->
+      <section class="page" id="salesPage">
+
+        <div class="section-heading">
+          <div>
+            <h2>Penjualan</h2>
+            <span>Catat seluruh transaksi penjualan</span>
+          </div>
+        </div>
+
+        <div class="panel form-panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Tambah Penjualan</h3>
+              <span>Stok akan berkurang otomatis</span>
+            </div>
+          </div>
+
+          <form id="salesForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label>Tanggal</label>
+                <input type="date" id="salesDate" required>
+              </div>
+
+              <div class="form-group">
+                <label>Produk</label>
+                <select id="salesProduct" required>
+                  <option value="">Pilih produk</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Jumlah</label>
+                <input type="number" id="salesQty" min="1" step="1" value="1" required>
+              </div>
+
+              <div class="form-group">
+                <label>Harga</label>
+                <input type="number" id="salesPrice" min="0" readonly>
+              </div>
+
+              <div class="form-group">
+                <label>Diskon</label>
+                <input type="number" id="salesDiscount" min="0" value="0">
+              </div>
+
+              <div class="form-group">
+                <label>Pelanggan</label>
+                <select id="salesCustomer">
+                  <option value="">Pelanggan umum</option>
+                </select>
+              </div>
+
+              <div class="form-group total-field">
+                <label>Total</label>
+                <input type="text" id="salesTotalDisplay" value="Rp0" readonly>
+              </div>
+
+            </div>
+
+            <div class="form-actions">
+              <button type="reset" class="secondary-btn" id="salesReset">
+                Reset
+              </button>
+              <button type="submit" class="primary-btn">
+                + Simpan Penjualan
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Riwayat Penjualan</h3>
+              <span id="salesCount">0 transaksi</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Produk</th>
+                  <th>Qty</th>
+                  <th>Harga</th>
+                  <th>Diskon</th>
+                  <th>Total</th>
+                  <th>Pelanggan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="salesTable"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- PRODUK -->
+      <section class="page" id="productsPage">
+
+        <div class="section-heading">
+          <div>
+            <h2>Produk</h2>
+            <span>Kelola produk dan persediaan</span>
+          </div>
+        </div>
+
+        <div class="panel form-panel">
+
+          <div class="panel-header">
+            <div>
+              <h3 id="productFormTitle">Tambah Produk</h3>
+              <span>Data produk digunakan oleh AI Intelligence</span>
+            </div>
+          </div>
+
+          <form id="productForm">
+
+            <input type="hidden" id="productId">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label>Nama Produk</label>
+                <input type="text" id="productName" placeholder="Contoh: Produk A" required>
+              </div>
+
+              <div class="form-group">
+                <label>Kategori</label>
+                <input type="text" id="productCategory" placeholder="Contoh: Makanan" required>
+              </div>
+
+              <div class="form-group">
+                <label>Harga Jual</label>
+                <input type="number" id="productPrice" min="0" required>
+              </div>
+
+              <div class="form-group">
+                <label>Harga Modal</label>
+                <input type="number" id="productCost" min="0" required>
+              </div>
+
+              <div class="form-group">
+                <label>Stok</label>
+                <input type="number" id="productStock" min="0" required>
+              </div>
+
+              <div class="form-group">
+                <label>Minimum Stok</label>
+                <input type="number" id="productMinStock" min="0" value="5" required>
+              </div>
+
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="secondary-btn hidden" id="cancelProductEdit">
+                Batal Edit
+              </button>
+              <button type="submit" class="primary-btn" id="productSubmitBtn">
+                + Simpan Produk
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Daftar Produk</h3>
+              <span id="productsCount">0 produk</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Produk</th>
+                  <th>Kategori</th>
+                  <th>Harga Jual</th>
+                  <th>Modal</th>
+                  <th>Stok</th>
+                  <th>Margin</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="productsTable"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- PENGELUARAN -->
+      <section class="page" id="expensesPage">
+
+        <div class="section-heading">
+          <div>
+            <h2>Pengeluaran</h2>
+            <span>Catat biaya operasional bisnis</span>
+          </div>
+        </div>
+
+        <div class="panel form-panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Tambah Pengeluaran</h3>
+              <span>Data biaya digunakan untuk analisis risiko</span>
+            </div>
+          </div>
+
+          <form id="expenseForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label>Tanggal</label>
+                <input type="date" id="expenseDate" required>
+              </div>
+
+              <div class="form-group">
+                <label>Kategori</label>
+                <select id="expenseCategory" required>
+                  <option value="">Pilih kategori</option>
+                  <option>Gaji</option>
+                  <option>Listrik</option>
+                  <option>Sewa</option>
+                  <option>Transportasi</option>
+                  <option>Marketing</option>
+                  <option>Operasional</option>
+                  <option>Lainnya</option>
+                </select>
+              </div>
+
+              <div class="form-group span-2">
+                <label>Keterangan</label>
+                <input type="text" id="expenseDescription" placeholder="Keterangan pengeluaran" required>
+              </div>
+
+              <div class="form-group">
+                <label>Nominal</label>
+                <input type="number" id="expenseAmount" min="0" required>
+              </div>
+
+            </div>
+
+            <div class="form-actions">
+              <button type="reset" class="secondary-btn">
+                Reset
+              </button>
+              <button type="submit" class="primary-btn">
+                + Simpan Pengeluaran
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Riwayat Pengeluaran</h3>
+              <span id="expensesCount">0 pengeluaran</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Kategori</th>
+                  <th>Keterangan</th>
+                  <th>Nominal</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="expensesTable"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- PELANGGAN -->
+      <section class="page" id="customersPage">
+
+        <div class="section-heading">
+          <div>
+            <h2>Pelanggan</h2>
+            <span>Kelola data pelanggan dan perilakunya</span>
+          </div>
+        </div>
+
+        <div class="panel form-panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Tambah Pelanggan</h3>
+              <span>Digunakan untuk analisis perubahan perilaku pelanggan</span>
+            </div>
+          </div>
+
+          <form id="customerForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+                <label>Nama</label>
+                <input type="text" id="customerName" placeholder="Nama pelanggan" required>
+              </div>
+
+              <div class="form-group">
+                <label>Kontak</label>
+                <input type="text" id="customerContact" placeholder="Nomor kontak">
+              </div>
+
+            </div>
+
+            <div class="form-actions">
+              <button type="reset" class="secondary-btn">
+                Reset
+              </button>
+              <button type="submit" class="primary-btn">
+                + Simpan Pelanggan
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+
+        <div class="panel">
+
+          <div class="panel-header">
+            <div>
+              <h3>Daftar Pelanggan</h3>
+              <span id="customersCount">0 pelanggan</span>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nama</th>
+                  <th>Kontak</th>
+                  <th>Transaksi</th>
+                  <th>Total Belanja</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="customersTable"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- AI INTELLIGENCE -->
+      <section class="page" id="intelligencePage">
+
+        <div class="intelligence-header">
+
+          <div>
+            <span class="eyebrow">AI BUSINESS INTELLIGENCE ENGINE</span>
+            <h2>Business Intelligence</h2>
+            <p>
+              Sistem membaca data bisnis dan mengubahnya menjadi
+              analisis, insight, peluang, risiko, dan opsi tindakan.
+            </p>
+          </div>
+
+          <button class="primary-btn" id="runAI">
+            🧠 Analisis Sekarang
+          </button>
+
+        </div>
+
+        <div class="logic-flow">
+
+          <div>
+            <span>01</span>
+            <strong>DATA</strong>
+            <small>Data bisnis</small>
+          </div>
+
+          <b>→</b>
+
+          <div>
+            <span>02</span>
+            <strong>ANALISIS</strong>
+            <small>Pola & perubahan</small>
+          </div>
+
+          <b>→</b>
+
+          <div>
+            <span>03</span>
+            <strong>INSIGHT</strong>
+            <small>Makna bisnis</small>
+          </div>
+
+          <b>→</b>
+
+          <div>
+            <span>04</span>
+            <strong>TINDAKAN</strong>
+            <small>Opsi keputusan</small>
+          </div>
+
+        </div>
+
+        <div class="ai-summary" id="aiSummary"></div>
+
+        <div class="intelligence-grid" id="intelligenceGrid"></div>
+
+      </section>
+
+      <!-- ANALYTICS -->
+      <section class="page" id="analyticsPage">
+
+        <div class="section-heading">
+          <div>
+            <h2>Analytics</h2>
+            <span>Visualisasi performa bisnis</span>
+          </div>
+        </div>
+
+        <div class="analytics-grid">
+
+          <div class="panel large-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Omzet Harian</h3>
+                <span>30 hari terakhir</span>
+              </div>
+            </div>
+            <div class="bar-chart" id="revenueChart"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Produk Terlaris</h3>
+                <span>Berdasarkan omzet</span>
+              </div>
+            </div>
+            <div id="topProducts"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Pengeluaran</h3>
+                <span>Berdasarkan kategori</span>
+              </div>
+            </div>
+            <div id="expenseCategories"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Performa Produk</h3>
+                <span>Penjualan 30 hari</span>
+              </div>
+            </div>
+            <div id="productPerformance"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="settingsPage">
+
+        <div class="section-heading">
+          <div>
+            <h2>Pengaturan</h2>
+            <span>Konfigurasi dan penyimpanan sistem</span>
+          </div>
+        </div>
+
+        <div class="settings-grid">
+
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Penyimpanan</h3>
+                <span>Data tersimpan di perangkat</span>
+              </div>
+            </div>
+
+            <div class="setting-row">
+              <div>
+                <strong>Local Storage</strong>
+                <small>Data tersimpan otomatis di browser</small>
+              </div>
+              <span class="status-badge success">Aktif</span>
+            </div>
+
+            <div class="setting-row">
+              <div>
+                <strong>AI BI Engine</strong>
+                <small>Analisis otomatis berbasis data</small>
+              </div>
+              <span class="status-badge success">Aktif</span>
+            </div>
+          </div>
+
+          <div class="panel danger-panel">
+            <div class="panel-header">
+              <div>
+                <h3>Reset Sistem</h3>
+                <span>Hapus seluruh data bisnis dari perangkat</span>
+              </div>
+            </div>
+
+            <p class="danger-text">
+              Tindakan ini akan menghapus produk, penjualan,
+              pengeluaran, dan pelanggan yang tersimpan.
+            </p>
+
+            <button class="danger-btn" id="resetAll">
+              🗑 Hapus Semua Data
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
